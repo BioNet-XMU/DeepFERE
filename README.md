@@ -37,8 +37,7 @@ DeepSURE models provide MSI high-resolution reconstructions in two scenarios: em
 
 (2) High-resolution reconstruction for embedding data: (a) LR embedding data; (b) LR single ion image; (c) HR H&E image; (d) n_factor.
 
-Here, 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; 
-H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image; Single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; n_factor: the user-definded mangification. 
+Here, 3-dimension MSI data with two-dimensional shape [X*Y,3], single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image;  n_factor: the user-definded mangification. 
 
 ## Run DeepSURE model
 
