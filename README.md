@@ -31,4 +31,27 @@ Three loss functions including mapping loss, correlation loss and reconstruction
 
 ## Input
 
-The input is the preprocessed MSI data with two-dimensional shape [X*Y,P], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data, and P represents the number of ions.
+DeepSURE models provide MSI high-resolution reconstructions in two scenarios: embedding data and single-ion image.
+
+(1) High-resolution reconstruction for embedding data: The input is the (i) 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (ii) H&E image: H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image. (iii) n_factor: the user-definded mangification.
+
+(2) High-resolution reconstruction for single ion image: The input is the (i) 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (ii) Single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (iii) H&E image: H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image. (iv) n_factor: the user-definded mangification.
+
+## Run DeepSURE model
+
+cd to the DeepSURE fold
+
+If you want to perfrom DeepSURE for *16 high-resolution restruction of embeddin data, taking fetus mouse brain section as an example, run:
+    
+    python run.py --mode embedding --input_MSIEfile .../example/mouse_brain.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
+    
+If you want to perfrom DeepSURE for *16 high-resolution restruction of single ion image, taking fetus mouse brain section as an example, run:
+
+    python run.py --mode ion --input_MSIEfile .../example/mouse_brain.txt --input_MSIIfile .../example/ion_505.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
+
+## Contact
+
+Please contact me if you have any help: gankLei@stu.xmu.edu.cn
+
+
+
