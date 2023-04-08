@@ -33,9 +33,12 @@ Three loss functions including mapping loss, correlation loss and reconstruction
 
 DeepSURE models provide MSI high-resolution reconstructions in two scenarios: embedding data and single-ion image.
 
-(1) High-resolution reconstruction for embedding data: The input is the (i) 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (ii) H&E image: H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image. (iii) n_factor: the user-definded mangification.
+(1) High-resolution reconstruction for embedding data: (a) LR embedding data; (b) HR H&E image; (c) n_factor.
 
-(2) High-resolution reconstruction for single ion image: The input is the (i) 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (ii) Single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data. (iii) H&E image: H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image. (iv) n_factor: the user-definded mangification.
+(2) High-resolution reconstruction for embedding data: (a) LR embedding data; (b) LR single ion image; (c) HR H&E image; (d) n_factor.
+
+Here, 3-dimension MSI data with two-dimensional shape [X*Y,3], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; 
+H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image; Single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; n_factor: the user-definded mangification. 
 
 ## Run DeepSURE model
 
