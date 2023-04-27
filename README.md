@@ -1,17 +1,17 @@
-# DeepHIRE
-DeepHIRE is a deep learning platform for high-resolution reconstruction of mass spectrometry imaging incorporated with mutimodal fusion.
+# DeepFURE
+DeepFURE is a deep learning platform for high-resolution reconstruction of mass spectrometry imaging incorporated with mutimodal fusion.
 Developer is Lei Guo from Laboratory of Biomedical Network, Department of Electronic Science, Xiamen University of China.
 
-# Overview of DeepHIRE
+# Overview of DeepFURE
 
 <div align=center>
 <img src="https://user-images.githubusercontent.com/70273368/230378358-129af693-2e52-4197-a037-600dce0b6bac.png" width="800" height="550" /><br/>
 </div>
 
-__Schematic overflow of the DeepHIRE model__. The registration module registers H&E image to MSI to obtain registered H&E image. 
+__Schematic overflow of the DeepFURE model__. The registration module registers H&E image to MSI to obtain registered H&E image. 
 The mapping module generates a HR MSI. The raw MSI data is embedded to low-dimension MSI, which is bicubically interpolated to form a HR MSI. 
 Two HR MSIs are concatenated and inputted into the fusion module to generate the fused HR image. 
-Three loss functions including mapping loss, correlation loss and reconstruction loss are used to optimize the DeepHIRE to generate the HR MSI.
+Three loss functions including mapping loss, correlation loss and reconstruction loss are used to optimize the DeepFURE to generate the HR MSI.
 
 # Requirement
 
@@ -31,7 +31,7 @@ Three loss functions including mapping loss, correlation loss and reconstruction
 
 ## Input
 
-DeepHIRE models provide MSI high-resolution reconstructions in two scenarios: embedding data and single-ion image.
+DeepFURE models provide MSI high-resolution reconstructions in two scenarios: embedding data and single-ion image.
 
 (1) High-resolution reconstruction for embedding data: (a) LR embedding data; (b) HR H&E image; (c) n_factor.
 
@@ -39,9 +39,9 @@ DeepHIRE models provide MSI high-resolution reconstructions in two scenarios: em
 
 Here, 3-dimension MSI data with two-dimensional shape [X*Y,3], single ion image with two-dimensional shape [X,Y], where X and Y represent the pixel numbers of horizontal and vertical coordinates of MSI data; H&E image with three-dimensional shape [H,W,3], where H and W represent the pixel numbers of horizontal and vertical coordinates of H&E image;  n_factor: the user-definded mangification. 
 
-## Run DeepHIRE model
+## Run DeepFURE model
 
-cd to the DeepHIRE fold
+cd to the DeepFURE fold
 
 If you want to perfrom DeepHIRE for *16 high-resolution restruction of embeddin data, taking fetus mouse brain section as an example, run:
     
