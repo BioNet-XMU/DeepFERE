@@ -30,7 +30,7 @@ def SUP_for_emb(imgg,imgg2,imgg3,n_factor,save_result,output_file):
     RecLoss = ReconLoss(n_factor,3)
     CorLoss = Correlation_Loss()
 
-    for j in range(200000):
+    for j in range(5000):
 
         model_G.zero_grad()
 
@@ -87,7 +87,7 @@ def SUP_for_ion(imgg, imgg2, imgg3, imgg4, imgg5, n_factor,save_result,output_fi
 
     CorLoss = Correlation_Loss()
     yy_stn = yy_stn.detach()
-    for j in range(2000):
+    for j in range(500):
 
         model_G.zero_grad()
 
