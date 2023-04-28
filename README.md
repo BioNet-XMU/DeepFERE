@@ -45,11 +45,11 @@ cd to the DeepFURE fold
 
 If you want to perfrom DeepHIRE for *16 high-resolution restruction of embeddin data, taking fetus mouse brain section as an example, run:
     
-    python run.py --mode embedding --input_MSIEfile .../example/mouse_brain.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
+    python run.py --mode embedding --input_MSIEfile .../example/mouse_brain_umap.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
     
 If you want to perfrom DeepHIRE for *16 high-resolution restruction of single ion image, taking fetus mouse brain section as an example, run:
 
-    python run.py --mode ion --input_MSIEfile .../example/mouse_brain.txt --input_MSIIfile .../example/ion_505.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
+    python run.py --mode ion --input_MSIEfile .../example/mouse_brain_umap.txt --input_MSIIfile .../example/mouse_brain_ion505.txt --input_HEfile .../example/HE.png --input_shape 40 36 --n_factor 16 
 
 ## Contact
 
