@@ -53,7 +53,7 @@ If you want to perfrom DeepHIRE for *16 high-resolution restruction of single io
 
 ## Contact
 
-Please contact me if you have any help: gankLei@stu.xmu.edu.cn
+Please contact me if you have any help: gl5121405@gmail.com
 
 
 
