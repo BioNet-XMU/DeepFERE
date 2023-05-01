@@ -93,10 +93,10 @@ def SUP_for_ion(imgg, imgg2, imgg3, imgg4, imgg5, n_factor,save_result,output_fi
 
         output, y_stn, y = model_G(imgg, yy_stn)
 
-        rec_loss = PreLoss(y, imgg3)
+        pred_loss = PreLoss(y, imgg3)
         corr_loss = CorLoss(output, y)
-        rec_loss2 = RecLoss(output, imgg3)
-        loss_total = rec_loss + corr_loss + rec_loss2
+        rec_loss = RecLoss(output, imgg3)
+        loss_total = pred_loss + corr_loss + rec_loss
 
         loss_total.backward(retain_graph=True)
         optimizer_G.step()
