@@ -20,6 +20,7 @@ parser.add_argument('--output_file', default='output/',help='output file name')
 
 if __name__ == '__main__':
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
+
     args = parser.parse_args()
     m,n = args.input_shape
 
