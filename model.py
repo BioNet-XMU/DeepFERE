@@ -185,6 +185,8 @@ class Unet(nn.Module):
                 skip.add(conv(input_depth, num_channels_skip[i], filter_skip_size, bias=need_bias, pad=pad))
                 skip.add(act(act_fun))
 
+            # skip.add(Concat(2, GenNoise(nums_noise[i]), skip_part))
+
             deeper.add(conv(input_depth, num_channels_down[i], filter_size_down[i], 2, bias=need_bias, pad=pad,
                             downsample_mode=downsample_mode[i]))
             deeper.add(act(act_fun))
@@ -195,6 +197,7 @@ class Unet(nn.Module):
             deeper_main = nn.Sequential()
 
             if i == len(num_channels_down) - 1:
+                # The deepest
                 k = num_channels_down[i]
             else:
                 deeper.add(deeper_main)
@@ -202,7 +205,8 @@ class Unet(nn.Module):
 
             deeper.add(nn.Upsample(scale_factor=2, mode=upsample_mode[i]))
 
-            self.model_tmp.add(conv(num_channels_skip[i] + k, num_channels_up[i], filter_size_up[i], 1, bias=need_bias, pad=pad))
+            self.model_tmp.add(
+                conv(num_channels_skip[i] + k, num_channels_up[i], filter_size_up[i], 1, bias=need_bias, pad=pad))
             self.model_tmp.add(act(act_fun))
 
             if need1x1_up:
@@ -217,17 +221,18 @@ class Unet(nn.Module):
             self.model.add(nn.Sigmoid())
 
         self.revise = nn.Sequential(
-            nn.Conv2d(self.ch, 16, kernel_size=3, stride=1, padding=1),
+            nn.Conv2d(self.ch//2, 16, kernel_size=3, stride=1, padding=1),
             nn.LeakyReLU(0.2, inplace=True),
             nn.Conv2d(16, 16, kernel_size=3, stride=1, padding=1),
             nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(16, self.ch, kernel_size=3, stride=1, padding=1)
+            nn.Conv2d(16, self.ch//2, kernel_size=3, stride=1, padding=1)
         ).cuda()
 
 
     def forward(self,x):
 
-        x = self.model(x[:,:self.ch,:,:])
+        x = self.model(x)
+        # print(x.shape)
         output = self.revise(x)
 
         return torch.cat([x,output],dim = 1)
@@ -371,9 +376,9 @@ class ConvBlock(nn.Sequential):
         self.add_module('LeakyRelu', nn.LeakyReLU(0.2, inplace=True))
 
 
-class SUP(nn.Module):
+class SUP_1(nn.Module):
     def __init__(self, input_channel):
-        super(SUP, self).__init__()
+        super(SUP_1, self).__init__()
 
         self.localization = nn.Sequential(
             nn.Conv2d(3, 8, kernel_size=7),
@@ -408,8 +413,6 @@ class SUP(nn.Module):
 
         self.tail = ConvBlock(64, input_channel, 3, 1, 1)
 
-        self.Unet = Unet(input_channel, input_channel).cuda()
-
     def stn(self, x):
         xs = self.localization(x)
         xs = torch.nn.AdaptiveAvgPool2d((1, 1))(xs)
@@ -423,7 +426,7 @@ class SUP(nn.Module):
 
         return x
 
-    def forward(self, x, y):
+    def forward(self, y):
 
         y_stn = self.stn(y)
 
@@ -431,8 +434,18 @@ class SUP(nn.Module):
         y = self.body(y)
         y = self.tail(y)
 
-        x = torch.cat([x, y], dim=1)
+        return y, y_stn
 
+class SUP_2(nn.Module):
+    def __init__(self, input_channel):
+        super(SUP_2, self).__init__()
+
+        self.Unet = Unet(input_channel * 2, input_channel).cuda()
+
+
+    def forward(self, x, y):
+
+        x = torch.cat([x, y], dim=1)
         output = self.Unet(x)
 
-        return output, y_stn, y
+        return output
