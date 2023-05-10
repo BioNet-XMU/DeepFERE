@@ -5,7 +5,7 @@ import argparse
 import cv2
 
 parser = argparse.ArgumentParser(
-    description='DeepSURE for high-resolution reconstruction of MSI incorporated with mutimodal fusion')
+    description='DeepFERE for high-resolution reconstruction of MSI incorporated with mutimodal fusion')
 
 parser.add_argument('--input_MSIEfile',required= True,help = 'path to inputting LR MSI embedding data')
 parser.add_argument('--input_MSIIfile',help = 'path to inputting LR MSI single ion data')
